@@ -9,10 +9,10 @@ class WordCloud:
     # initialises everything
     # everything gets kicked off here
     def __init__(self):
-        self.my_dict = self.create_dict()
+        self.the_dict = self.add_to_dict();
         # you might like to run the following line only
         # if there wasn't a problem creating the dictionary
-        self.create_html(self.my_dict)
+        self.create_html(self.the_dict)
 
     # this function creates the actual html file
     # takes a dictionary as an argument
@@ -31,7 +31,8 @@ class WordCloud:
 
         # your code goes here!
         fo.write('<span style="font-size: 20px"> HELLO </span>')
-
+        for word in the_dict:
+            fo.write("<span style='font-size: "+str(16+(the_dict[word][1]*the_dict[word][1]))+"px'> "+the_dict[word][0]+" </span>");
         fo.write('</div>\
             </body>\
             </html>')
@@ -47,11 +48,6 @@ class WordCloud:
     # makes a call to add_to_dict where the dictionary
     # is actually populated
     # returns a dictionary
-    def create_dict(self):
-        my_dict = {}
-        # your code goes here:
-
-        return my_dict
 
     # helper function that is called from
     # create_dict
@@ -60,8 +56,17 @@ class WordCloud:
     # if this word already exists. Otherwise sets the
     # word occurance counter to 1
     # returns a dictionary
-    def add_to_dict(self, word, the_dict):
+    def add_to_dict(self,):
+        the_dict = {};
         # your code goes here
+        with open("gettisburg.txt", "r") as f:
+            for line in f:
+                words = line.split(" ");
+                for word in words:
+                    if word in the_dict:
+                        the_dict[word][1] = the_dict[word][1]+1;
+                    else:
+                        the_dict[word] = [word, 1];
 
         return the_dict
 

@@ -59,7 +59,6 @@ class Types_and_Strings:
         # print the list 3 times by using multiplication:
 
 
-
 tas = Types_and_Strings()
 tas.play_with_strings()
 #tas.play_with_lists()
